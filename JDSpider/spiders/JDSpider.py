@@ -97,7 +97,7 @@ class JDSpider(RedisSpider):
         try:
             title = response.xpath('//div[@class="sku-name"]/text()').extract()[0].replace(u"\xa0", "").strip()
         except Exception as e:
-            title = response.xpath('//div[@id="name"]/h1/text()').extract()[0]
+            title = response.xpath('//div[@class="sku-name"]/text()').extract()[1].replace(u"\xa0", "").strip()
         productsItem['name'] = title
         product_id = response.url.split('/')[-1][:-5]
         productsItem['_id'] = product_id
@@ -207,7 +207,10 @@ class JDSpider(RedisSpider):
             comment['productId'] = product_id
             comment['guid'] = comment_item.get('guid')
             comment['content'] = comment_item.get('content')
-            comment['creationTime'] = comment_item.get('creationTime')
+            creation = comment_item.get('creationTime')
+            hour = creation[1].split(':')[0]
+            comment['creationTime'] = creation.split(' ')[0]
+            comment['creationHour'] = hour
             comment['isTop'] = comment_item.get('isTop')
             comment['referenceId'] = comment_item.get('referenceId')
             comment['referenceName'] = comment_item.get('referenceName')
