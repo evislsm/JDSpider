@@ -12,7 +12,7 @@ from JDSpider.items import *
 class MongoDBPipeline(object):
     def __init__(self):
         clinet = pymongo.MongoClient("39.106.67.151", 27017)
-        db = clinet["JD"]
+        db = clinet["JD1"]
         self.Categories = db["Categories"]
         self.Products = db["Products"]
         self.Shop = db["Shop"]
