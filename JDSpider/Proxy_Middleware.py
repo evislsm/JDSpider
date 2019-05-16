@@ -30,7 +30,7 @@ class ProxyMiddleware():
         if count == 1:
             # print 'the first#############'
             ips = GetIps()
-        elif count % 100 == 0:
+        elif count % len(ips) == 0:
             # print '#####'
             # print count
             ips = []
