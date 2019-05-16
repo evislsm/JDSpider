@@ -48,6 +48,7 @@ class CommentItem(Item):
     guid = Field()
     content = Field()
     creationTime = Field()
+    creationHour = Field()
     isTop = Field()
     referenceId = Field()
     referenceName = Field()
